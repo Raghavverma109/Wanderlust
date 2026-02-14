@@ -1,0 +1,105 @@
+<footer class="container-fluid" id="footer">
+    <div class="footer-content container">
+        <div class="row w-100">
+            <div class="col-md-4 footer-column mb-4">
+                <div class="brand mb-3">
+                    <div class="wrapper six">
+                        <h3 class="flicker">Wanderlust</h3>
+                    </div>
+                    <p>Where adventure meets comfort.</p>
+                </div>
+                <div class="contact-info" id="contact-us">
+                    <div class="email d-flex align-items-center mb-2">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <p class="m-0">Need assistance?<br>
+                            <a href="mailto:support@Wanderlust.com" class="mail">supportWanderlust@gmail.com</a>
+                        </p>
+                    </div>
+                    <div class="phone d-flex align-items-center">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <p class="m-0">Available 24/7<br>
+                            <a href="tel:+910123456789" class="mobile">+91-0123456789</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 footer-column mb-4 text-md-center">
+                <div class="company-links">
+                    <h3 class="mt-4">Company</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/about" class="footer-link">About Us</a></li>
+                        <li class="mb-2"><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="/terms" class="footer-link">Terms & Conditions</a></li>
+                        <li class="mb-2"><a href="/contributors" class="footer-link">Our Contributors</a></li>
+                    </ul>
+                </div>
+                <style>
+                    .footer-link {
+                        color: black;
+                        text-decoration: none;
+                    }
+                </style>
+            </div>
+
+            <div class="col-md-4 mt-4 footer-column mb-4 text-md-end">
+                <h3 class="mb-3">Connect with us</h3>
+                <div class="social-media mb-4">
+                    <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+
+                <div class="feedback">
+                    <button id="feedback">Give your Feedback</button>
+                </div>
+            </div>
+
+            <div class="copyright text-center mt-4 border-top pt-3">
+                <p>© <span id="year"></span> Wanderlust Private Limited. All rights reserved.</p>
+            </div>
+
+            <div class="feedback-popup" id="feedbackPopup">
+                <div class="feedback-container shadow-lg">
+                    <h2 class="mb-4">Share Your Experience!</h2>
+                    <form method="POST" action="/feedback" id="review-form" novalidate class="needs-validation">
+                        <div class="star-rating mb-3">
+                            <input type="radio" id="star5" name="feedback[rating]" value="5" required />
+                            <label for="star5" title="5 stars">★</label>
+                            <input type="radio" id="star4" name="feedback[rating]" value="4" />
+                            <label for="star4" title="4 stars">★</label>
+                            <input type="radio" id="star3" name="feedback[rating]" value="3" />
+                            <label for="star3" title="3 stars">★</label>
+                            <input type="radio" id="star2" name="feedback[rating]" value="2" />
+                            <label for="star2" title="2 stars">★</label>
+                            <input type="radio" id="star1" name="feedback[rating]" value="1" />
+                            <label for="star1" title="1 star">★</label>
+                        </div>
+
+                        <input type="text" id="name" name="feedback[name]" class="form-control mb-3"
+                            placeholder="Your Name (Optional)">
+                        <textarea id="comment" name="feedback[comment]" class="form-control mb-3"
+                            placeholder="Tell us about your trip..." rows="4" required></textarea>
+
+                        <div class="feed-buttons d-flex gap-2">
+                            <button type="button" id="close-button" class="btn btn-secondary flex-grow-1">Close</button>
+                            <button type="submit" class="btn btn-danger flex-grow-1">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+</footer>
+
+<style>
+    #footer {
+        background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('footer_bg3.png');
+        background-size: cover;
+        padding: 2rem 0;
+    }
+
+    .social-media i {
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 1.5rem;
+    }
+</style>

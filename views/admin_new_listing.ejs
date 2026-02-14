@@ -1,0 +1,306 @@
+<% layout("/layouts/admin_boilerplate") %>
+<style>
+    .form_body {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 7px 15px rgba(0, 0, 0, 0.5);
+    }
+    #previewContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .preview-image-container {
+        position: relative;
+        padding: 5px;
+        overflow: hidden;
+        background-color: #d3d3d3;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        width: 9rem;
+        height: 7rem;
+    }
+
+    .preview-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+    .filter-tag{
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .indi-filter{
+        padding: 0.1rem 0 0.1rem 0.6rem;
+        background-color: #d3d3d3;
+        margin-left: 0.4rem;
+        border-radius: 3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .dark-mode{
+        .form_body {
+            background-color: #2e2e2e;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease;
+        }
+
+        h3{
+            color: #ffffff;
+        }
+        .indi-filter{
+            background-color: #555555;
+        }
+        .indi-filter label{
+            color: #ffffff !important;
+        }
+        .form-label {
+            color: #ffffff;
+        }
+        .listing_form input, textarea{
+            background-color: #1b1b1b;
+            color: #ffffff;
+            border: 1px solid #555555;
+            transition: box-shadow 0.3s ease;
+        }
+        .listing_form input::placeholder,
+        .listing_form textarea::placeholder {
+            color: #aaaaaa !important;
+        }
+    
+        .listing_form button[type="submit"] {
+            border: 2px solid #999;
+            color: #999;
+        }
+        .listing_form button[type="submit"]:hover {
+            color: #333;
+            border: none;
+            background: #999;
+        }
+        .listing_form .form-text{
+            color: #b0b0b082 !important;
+        }
+    }
+    
+    .all_btns{
+        display: flex !important;
+        justify-content: center;
+    }
+    .all_btns .btn{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+</style>
+
+<br>
+<div class="row">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto form_body">
+        <h3 class="d-flex justify-content-center mt-2 heading">Add New Hotel Property</h3>
+        <form method="POST" action="/admin/hotel/new" enctype="multipart/form-data" novalidate class="needs-validation">
+            <div class="mb-3 listing_form">
+                <label for="title" class="form-label">Title</label>
+                <br>
+                <input name="listing[title]" class="form-control" placeholder="Enter property title" required>
+                <div class="invalid-feedback">Please add a title!</div>    
+                <div class="valid-feedback">Looks good!</div>                    
+            </div>
+            <div class="mb-3 listing_form">
+                <label for="description" class="form-label">Description</label>
+                <br>
+                <textarea name="listing[description]" id="list-description" class="form-control" cols="30" rows="5" placeholder="Enter property description....." required></textarea>
+                <small class="" id="des-error"></small>
+                <div class="invalid-feedback">Please add a description!</div>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3 listing_form">
+                <label for="images" class="form-label">Upload Images</label>
+                <input type="file" name="listing[image]" class="form-control" id="fileInput" multiple required>
+                <div class="invalid-feedback">Please upload at least one image!</div>
+                <small class="form-text text-muted">You can upload multiple images (Maximum 4)</small>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+        
+            <!-- Image preview container -->
+            <div id="previewContainer" class="mb-3"></div>
+
+            <div class="row">
+                <div class="mb-3 col-3 listing_form">
+                    <label for="price" class="form-label">Price (&#8377;)</label>
+                    <br>
+                    <input name="listing[price]" class="form-control" type="number" placeholder="Enter price" required>
+                    <div class="invalid-feedback">Please add a price!</div>
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+
+                <div class="mb-3 col-5 listing_form">
+                    <label for="location" class="form-label">Location</label>
+                    <br>
+                    <input name="listing[location]" id="adminNewLocationInput" class="form-control" placeholder="Enter location" required>
+                    <div class="invalid-feedback">Please enter a valid location!</div>
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+           
+                <div class="mb-3 col-4 listing_form">
+                    <label for="country" class="form-label">Country</label>
+                    <br>
+                    <input name="listing[country]" class="form-control" placeholder="Enter country" required>
+                    <div class="invalid-feedback">Please enter a country name!</div>
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+            </div>
+                <!-- Tags section -->
+                <div class="mb-3 listing_form">
+                    <label for="tags" class="form-label">Tags</label>
+                    <br>
+                    <div class="filter-tag">
+                    <% tags.forEach(tag => { %>
+                        <div class="indi-filter">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input tag-checkbox" type="checkbox" name="listing[tags]" id="tag<%= tag %>" value="<%= tag %>">
+                                <label class="form-check-label" for="tag<%= tag %>"><%= tag %></label>
+                            </div>
+                        </div>
+                    <% }) %>
+                    </div>
+                    <small class="form-text tag-alert">Maximum 3 tags are allowed!</small>
+                </div>
+            
+                <!-- Location Map Preview -->
+                <div class="mb-3">
+                    <label class="form-label"><b>Location Preview (OpenStreetMap)</b></label>
+                    <div id="adminNewMap" style="width: 100%; height: 300px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);"></div>
+                    <small class="form-text text-muted">The map will update as you type the location</small>
+                </div>
+            
+                <div class="all_btns">
+                <button class="btn btn-primary" type="submit">Create Hotel</button>
+                <a href="/admin/dashboard" class="btn btn-secondary">Cancel</a>
+            </div>
+            <br><br>
+        </form>
+    </div>
+</div>
+
+<!-- JS for image preview and map -->
+<script>
+    // Initialize map for new admin listing
+    const adminNewMap = L.map('adminNewMap').setView([28.6139, 77.2090], 10);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(adminNewMap);
+
+    let adminNewMarker = L.marker([28.6139, 77.2090]).addTo(adminNewMap)
+        .setPopupContent('<strong>New Delhi, India</strong>')
+        .openPopup();
+
+    // Update map when location input changes
+    const adminNewLocationInput = document.getElementById('adminNewLocationInput');
+    const updateAdminNewMapWithLocation = async () => {
+        const location = adminNewLocationInput.value.trim();
+        if (!location) return;
+
+        try {
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json&limit=1`, {
+                headers: { 'User-Agent': 'Wanderlust_Admin' }
+            });
+            const data = await response.json();
+            
+            if (data && data.length > 0) {
+                const { lat, lon } = data[0];
+                const newCoords = [parseFloat(lat), parseFloat(lon)];
+                
+                adminNewMap.setView(newCoords, 10);
+                adminNewMarker.setLatLng(newCoords);
+                adminNewMarker.setPopupContent(`<strong>${location}</strong>`).openPopup();
+            }
+        } catch (error) {
+            console.error('Error updating location:', error);
+        }
+    };
+
+    // Debounce location input (wait 1 second after user stops typing)
+    let adminNewLocationTimeout;
+    adminNewLocationInput.addEventListener('input', () => {
+        clearTimeout(adminNewLocationTimeout);
+        adminNewLocationTimeout = setTimeout(updateAdminNewMapWithLocation, 1000);
+    });
+
+    // Image preview functionality
+    const filesMax = 4; // Maximum allowed files
+    const fileInput = document.getElementById("fileInput");
+    const fileList = []; // Array to hold selected files
+
+    fileInput.addEventListener("change", function (event) {
+    const files = Array.from(event.target.files);
+    if (files.length + fileList.length > filesMax) {
+        fileList.length = 0; // Clear the file list array
+        displayPreview(); // Clear the preview display
+        alert('Maximum 4 images allowed!');
+    }
+    else{
+        // Add new files to the fileList
+        fileList.push(...files);
+
+        // Display preview and update the file input to include all selected files
+        displayPreview();
+        updateFileInput();
+    }
+    
+    });
+
+    function displayPreview() {
+    // Display images in fileList as preview
+    const previewContainer = document.getElementById("previewContainer");
+    previewContainer.innerHTML = ""; // Clear existing content
+
+    fileList.forEach((file, index) => {
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("preview-image-container");
+
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        img.alt = `Image ${index + 1}`;
+        img.classList.add("preview-img");
+
+        imgContainer.appendChild(img);
+        previewContainer.appendChild(imgContainer);
+    });
+    }
+
+    function updateFileInput() {
+    // Clear the original file input and set files from fileList
+    const dataTransfer = new DataTransfer();
+    fileList.forEach(file => dataTransfer.items.add(file));
+    fileInput.files = dataTransfer.files;
+    }
+
+    // Tag selection limit
+    const tagCheckboxes = document.querySelectorAll('.tag-checkbox');
+    const tagAlert = document.querySelector('.tag-alert');
+    const maxAllowedTags = 3;
+
+    tagCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const checkedCount = document.querySelectorAll('.tag-checkbox:checked').length;
+            if (checkedCount > maxAllowedTags) {
+                checkbox.checked = false;
+                if (tagAlert) {
+                    tagAlert.classList.remove("normal-tag-alert");
+                    tagAlert.classList.add("red-tag-alert");
+                }
+            } else if (tagAlert) {
+                tagAlert.classList.remove("red-tag-alert");
+                tagAlert.classList.add("normal-tag-alert");
+            }
+        });
+    });
+</script>
