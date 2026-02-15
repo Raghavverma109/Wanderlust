@@ -114,15 +114,24 @@ Use the `.env.example` file as a reference. Keep secrets out of version control.
 
 Include screenshots to help reviewers and maintainers. Recommended images directory:
 
-`public/assets/screenshots/`
+## Screenshots
 
-Place images with clear names, then reference them in this README. Example markdown to add where you want the screenshot shown:
+### Home Page
+*Browse and search travel listings with an intuitive interface*
+![alt text](image.png)
 
-```markdown
-![Homepage](/public/assets/screenshots/homepage.png)
-![Listing Details](/public/assets/screenshots/listing-details.png)
-![alt text](homepage.png)
-```
+### Chat Bot Support
+*AI-powered assistant for instant customer support and queries*
+![alt text](image-1.png)
+
+### Blog Page
+*Informative travel guides and destination tips*
+![alt text](image-3.png)
+
+### Admin Panel
+*Comprehensive dashboard for managing listings, users, and bookings*
+![alt text](image-4.png)
+
 
 Recommended screenshots to capture and commit (suggested filenames):
 
