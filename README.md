@@ -119,7 +119,9 @@ Include screenshots to help reviewers and maintainers. Recommended images direct
 Place images with clear names, then reference them in this README. Example markdown to add where you want the screenshot shown:
 
 ```markdown
-![Homepage](/public/assets/screenshots/homepage.png)
+![Homepage]
+<img width="1910" height="865" alt="image" src="https://github.com/user-attachments/assets/2aca1d6c-b473-4322-9f95-35b880fa409d" />
+
 ![Listing Details](/public/assets/screenshots/listing-details.png)
 ```
 
