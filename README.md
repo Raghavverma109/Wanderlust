@@ -122,6 +122,7 @@ Include screenshots to help reviewers and maintainers. Recommended images direct
 
 ### Chat Bot Support
 *AI-powered assistant for instant customer support and queries*
+
 ![alt text](image-1.png)
 
 ### Blog Page
