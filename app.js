@@ -265,6 +265,10 @@ app.delete('/blogs/:id', isLoggedIn, asyncwrap(async (req, res) => {
 app.get("/contact", otherController.contactPage);
 app.post("/contact", asyncwrap(contactUsController));
 app.get('/about', asyncwrap(otherController.aboutPage));
+app.get('/profile', isLoggedIn, asyncwrap(profileController.viewProfile));
+app.route('/profile/edit')
+    .get(isLoggedIn, asyncwrap(profileController.profileGet))
+    .post(isLoggedIn, upload.single('profilePicture'), asyncwrap(profileController.profilePost));
 
 // --- Error Handling ---
 app.use("*", (req, res) => res.render("not_found.ejs"));

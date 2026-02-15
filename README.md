@@ -121,6 +121,7 @@ Place images with clear names, then reference them in this README. Example markd
 ```markdown
 ![Homepage](/public/assets/screenshots/homepage.png)
 ![Listing Details](/public/assets/screenshots/listing-details.png)
+![alt text](homepage.png)
 ```
 
 Recommended screenshots to capture and commit (suggested filenames):

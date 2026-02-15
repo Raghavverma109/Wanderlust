@@ -60,10 +60,17 @@ module.exports.profilePost = async (req, res) => {
       });
   
     } catch (err) {
-      // Handeling special error for network delay or slow network.
+      // Handle Cloudinary file size errors
+      if (err.message && err.message.includes('File size too large')) {
+        console.error("Cloudinary File Size Error:", err);
+        req.flash("error", "Image size is too large! Please upload an image smaller than 10MB.");
+        return res.redirect('/profile/edit');
+      }
+      // Handle special error for network delay or slow network
       if (err.name === 'TimeoutError') {
         console.error("Cloudinary Timeout Error:", err);
         req.flash("error", "Image not deleted due to network issue! Try again later!");
+        return res.redirect('/profile/edit');
       }
       req.flash("error", "Something went wrong! Maybe this username or email already exists!");
       return res.redirect('/profile/edit');
