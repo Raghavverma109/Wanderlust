@@ -1,30 +1,24 @@
-<!-- Updated Navbar with search form -->
-<nav class="navbar navbar-expand-lg sticky-top">
+<nav class="navbar navbar-expand-lg sticky-top bg-white border-bottom shadow-sm">
   <div class="container">
-    <!-- Brand and explore link on the left -->
-    <a class="navbar-brand" href="/" id="brand-link">
-    <i class="fa-sharp fa-solid fa-bed brand-icon" id="brand-icon"></i>
-</a>
-    <a class="nav-link" id="explore" href="/listing">Wanderlust</a>
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <i class="fa-sharp fa-solid fa-bed brand-icon me-2" id="brand-icon"></i>
+      <span id="explore" class="fw-bold">Wanderlust</span>
+    </a>
 
-    <!-- dark mode toggle button for mobile -->
-     <div class="toggle-container mobile-toggle">
-      <button class="darkModeToggle dark-mode-toggle">
-        <i class="toggleIcon bx bxs-moon"></i>
+    <div class="d-flex align-items-center d-lg-none">
+      <div class="toggle-container me-2">
+        <button class="darkModeToggle dark-mode-toggle border-0 bg-transparent p-0">
+          <i class="toggleIcon bx bxs-moon fs-4"></i>
+        </button>
+      </div>
+      <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-     </div>
-    
-    <!-- Navbar Toggler for small screens -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    </div>
 
-    <!-- Navbar Collapse (links and form) -->
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-
-      <!-- Left side navigation links -->
-      <ul class="navbar-nav ml-auto main-menues normal-nav custom_nav">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto text-center text-lg-start">
         <li class="nav-item">
           <a class="nav-link" id="air_bnb" href="/listing/new">Add property</a>
         </li>
@@ -35,170 +29,130 @@
           <a class="nav-link hight-light" href="/top-listings">Top Properties</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  hight-light" href="/contact">Contact Us</a>
+          <a class="nav-link hight-light" href="/contact">Contact Us</a>
         </li>
-       <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link hight-light" href="/feedback">Feedbacks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  hight-light" href="/blogs">Blogs</a>
-        </li>
-        <li class="nav-item toggle-container desktop-toggle">
-          <button class="darkModeToggle dark-mode-toggle">
-            <i class="toggleIcon bx bxs-moon"></i>
-          </button>
+          <a class="nav-link hight-light" href="/blogs">Blogs</a>
         </li>
         
+        <li class="nav-item d-lg-none">
+          <a class="nav-link" href="/listing/#faq">FAQs</a>
+        </li>
+
+        <% if(!currUser) { %>
+          <li class="nav-item d-lg-none mt-2">
+            <a class="btn btn-outline-danger w-100 mb-2" href="/login">Log in</a>
+          </li>
+          <li class="nav-item d-lg-none">
+            <a class="btn btn-danger w-100" href="/signup">Sign up</a>
+          </li>
+        <% } else { %>
+          <li class="nav-item d-lg-none mt-2">
+            <a class="nav-link fw-bold border-top pt-2" href="/profile">Your profile</a>
+          </li>
+          <li class="nav-item d-lg-none">
+            <a class="nav-link text-danger" href="/logout">Log out</a>
+          </li>
+        <% } %>
       </ul>
 
-
-      <!-- Nav bar for mobile only -->
-      <div class="mobile-nav">
-        <ul>
-          <li class="nav-item">
-            <a class="nav-link" href="/listing/new">Wanderlust ur Home</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link" href="/about">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/top-listings">Top Properties</a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact Us</a>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/feedback">Feedbacks</a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/listing/#faq">FAQs</a>
-          </li>
-
-          <% if(!currUser) {%> <!--If inside currUser have not any user data then show this-->
-            <li class="nav-item">
-              <a class="nav-link" href="/signup">Sign up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Log in</a>
-            </li>
-            <% } %>
-
-              <% if(currUser) {%> <!--If inside currUser have any user data then show this-->
-
-                <li class="nav-item">
-                  <a class="nav-link" href="/profile">Your profile</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/logout">Log out</a>
-                </li>
-                <% } %>
-        </ul>
-
+      <div class="search-box-wrapper my-3 my-lg-0 mx-lg-3">
+        <form class="d-flex" action="/listing/search" method="post">
+          <button class="btn btn-outline-secondary nearby-btn  me-2" type="button" onclick="getNearbyListings()" title="Find nearby">
+            <i class="fa-solid fa-location-crosshairs"></i>
+          </button>
+          <div class="input-group">
+            <input class="form-control" type="search" name="query" placeholder="Search destinations.." aria-label="Search">
+            <button class="btn btn-danger" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
       </div>
 
-      
-      <!-- Search bar in the middle -->
-<div class="input-group search-box">
-  <form class="d-flex mx-3" action="/listing/search" method="post">
-    <button class="btn btn-outline-secondary nearby-btn" type="button" onclick="getNearbyListings()" title="Find nearby">
-        <i class="fa-solid fa-location-crosshairs"></i>
-      </button>
-    <div class="input-group search-container" style="padding-left: 3rem;"> 
-      
-      <input class="form-control search-in " type="search" name="query" placeholder="Search your Wanderlust.."
-        aria-label="Search">
-      
-      
+      <div class="d-none d-lg-flex align-items-center">
+        <div class="toggle-container me-3">
+          <button class="darkModeToggle dark-mode-toggle border-0 bg-transparent p-0">
+            <i class="toggleIcon bx bxs-moon fs-4"></i>
+          </button>
+        </div>
 
-      <button class="btn btn-danger search" type="submit">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
-  </form>
-</div>
-
-      <div class="nav-link dropdown d-down flex normal-nav profile-div">
-        <a role="button" class="nav-link drop-button dropdown-toggle tg" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <i class="fa-solid fa-bars"></i>
-          <% if(!currUser) {%>
-            <img src="/assets/noprofilenav.png" alt="" class="nav-profile">
+        <div class="dropdown">
+          <a role="button" class="drop-button d-flex align-items-center text-decoration-none text-dark border p-1 px-2 rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-bars me-2"></i>
+            <% if(!currUser) { %>
+              <img src="/assets/noprofilenav.png" alt="User" class="nav-profile rounded-circle" width="30" height="30">
+            <% } else { %>
+              <img src="<%= (currUser.profilePicture && currUser.profilePicture.purl) ? profilePic : '/assets/profile.png' %>" alt="User" class="nav-profile rounded-circle" width="30" height="30">
             <% } %>
-
-              <% if(currUser) {%>
-                <% if(currUser.profilePicture.purl) {%>
-                  <img src="<%=profilePic%>" alt="Profile" class="nav-profile" onerror="this.style.backgroundColor='#ddd'">
-                <% } else { %>
-                  <img src="/assets/profile.png" alt="Profile" class="nav-profile" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22%3E%3Crect fill=%22%23ddd%22 width=%2240%22 height=%2240%22/%3E%3C/svg%3E'">
-                <% } %>
-              <% } %>
-
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end desk-drop">
-          <% if(!currUser) {%>
-            <li class="nav-item drop auth">
-              <a class="nav-link" href="/login">
-              <i class="fa-solid fa-right-to-bracket" style="color: #fc3503;"></i>
-              <span>Login</span>
-             </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="nav-item drop auth">
-              <a class="nav-link" href="/signup">
-                <i class="fa-solid fa-user-plus"></i>
-                <span>Signup</span>
-             </a>
-            </li>
-          <% } else {%>
-              <li class="nav-item drop auth">
-                 <a class="nav-link" href="/logout">
-                    <i class="fa-solid fa-right-from-bracket" style="color: #f40606;"></i>
-                    <span style="margin-left: .4rem;">Log Out</span>
-                 </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li class="nav-item drop align auth">
-                   <a class="nav-link" href="/profile">
-                       <i class="fa-solid fa-user"></i>
-                    <span>Your profile</span>&nbsp;
-                  </a>
-                   <i class="fa-solid fa-angle-right"></i>
-              </li>
-          <% } %>
-
-        </ul>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+            <% if(!currUser) { %>
+              <li><a class="dropdown-item py-2" href="/login"><i class="fa-solid fa-right-to-bracket me-2 text-danger"></i>Login</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item py-2" href="/signup"><i class="fa-solid fa-user-plus me-2"></i>Signup</a></li>
+            <% } else { %>
+              <li><a class="dropdown-item py-2" href="/profile"><i class="fa-solid fa-user me-2"></i>Your profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item py-2 text-danger" href="/logout"><i class="fa-solid fa-right-from-bracket me-2"></i>Log Out</a></li>
+            <% } %>
+          </ul>
+        </div>
       </div>
 
     </div>
   </div>
 </nav>
 
-
 <style>
-  /* Styling the icon */
-.brand-icon {
-    color: #fe424d; /* Aerovia Red */
-    font-size: 2.5rem; /* Makes it larger */
-    transition: transform 0.3s ease; /* Smooth transition for hover */
-    display: inline-block;
-}
+  /* Ensure the navbar brand stays aligned */
+  .navbar-brand #explore {
+    font-size: 1.25rem;
+    color: #333;
+    letter-spacing: -0.5px;
+  }
 
-/* Hover effect */
-.brand-icon:hover {
+  .brand-icon {
+    color: #fe424d;
+    font-size: 2rem;
+    transition: transform 0.3s ease;
+  }
+
+  .brand-icon:hover {
     transform: scale(1.1) rotate(-10deg);
-}
+  }
 
-/* Click Animation Class */
-.spin-animation {
-    animation: spin-once 0.6s ease-in-out;
-}
+  /* Desktop Profile Button Styling */
+  .drop-button {
+    transition: box-shadow 0.2s;
+    background: #fff;
+  }
 
-@keyframes spin-once {
-    0% { transform: rotate(0deg) scale(1.1); }
-    100% { transform: rotate(360deg) scale(1); }
-}
+  .drop-button:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+  }
+
+  /* Nav Link Hover Effects */
+  .nav-link {
+    font-weight: 500;
+    color: #555 !important;
+  }
+
+  .nav-link:hover {
+    color: #fe424d !important;
+  }
+
+  /* Fix for Mobile Collapse */
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .search-box-wrapper .input-group {
+      width: 100%;
+    }
+  }
 </style>

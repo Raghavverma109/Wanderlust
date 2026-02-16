@@ -8,17 +8,22 @@
                     </div>
                     <p>Where adventure meets comfort.</p>
                 </div>
-                <div class="contact-info" id="contact-us">
-                    <div class="email d-flex align-items-center mb-2">
-                        <i class="fas fa-envelope contact-icon"></i>
-                        <p class="m-0">Need assistance?<br>
-                            <a href="mailto:support@Wanderlust.com" class="mail">supportWanderlust@gmail.com</a>
+
+                <div class="contact-info footer-column d-flex flex-column align-items-center align-items-md-start"
+                    id="contact-us">
+                    <div class="email d-flex align-items-center justify-content-center justify-content-md-start mb-2">
+                        <i class="fas fa-envelope contact-icon mt-4"></i>
+                        <p class="m-0 ms-2 text-center text-md-start">
+                            Need assistance?<br>
+                            <a href="mailto:supportWanderlust@gmail.com" class="mail">supportWanderlust@gmail.com</a>
                         </p>
                     </div>
-                    <div class="phone d-flex align-items-center">
-                        <i class="fas fa-phone contact-icon"></i>
-                        <p class="m-0">Available 24/7<br>
-                            <a href="tel:+910123456789" class="mobile">+91-0123456789</a>
+
+                    <div class="phone d-flex align-items-center justify-content-center justify-content-md-start">
+                        <i class="fas fa-phone contact-icon mt-4"></i>
+                        <p class="m-0 ms-2 text-center text-md-start">
+                            Available 24/7<br>
+                            <a href="tel:+917895483262" class="mobile">+91-7895483262</a>
                         </p>
                     </div>
                 </div>
@@ -88,17 +93,122 @@
                 </div>
             </div>
 </footer>
-
 <style>
+    /* Footer base */
     #footer {
-        background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('footer_bg3.png');
+        background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('/assets/footer_bg3.png') center/cover no-repeat;
         background-size: cover;
-        padding: 2rem 0;
+        padding: 3rem 0;
+        color: #222;
+    }
+
+
+
+    .footer-content {
+        padding: 0 1rem;
+    }
+
+    .footer-column {
+        margin-bottom: 1rem;
+    }
+
+
+    .brand .flicker {
+        font-size: 1.6rem;
+    }
+
+    .contact-icon {
+        margin-right: 0.5rem;
+        color: #d63333;
+    }
+
+    .social-media a {
+        color: inherit;
     }
 
     .social-media i {
         width: 1.5rem;
         height: 1.5rem;
         font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+
+    .feedback button#feedback {
+        padding: .5rem 1rem;
+    }
+
+    /* Feedback popup */
+    .feedback-popup {
+        display: none;
+    }
+
+    .feedback-popup.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 1050;
+    }
+
+    .feedback-container {
+        background: #fff;
+        padding: 1.25rem;
+        border-radius: .5rem;
+        width: 100%;
+        max-width: 700px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+        #footer {
+            padding: 2.5rem 0;
+        }
+
+        .brand .flicker {
+            font-size: 1.4rem;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        #footer {
+            padding: 1.75rem 0;
+            background-position: center top;
+        }
+
+        .footer-column {
+            text-align: center;
+        }
+
+        .company-links {
+            margin-top: .5rem;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: .6rem;
+        }
+
+        .social-media i {
+            width: 1.9rem;
+            height: 1.9rem;
+            font-size: 1.2rem;
+        }
+
+        .feedback-container {
+            padding: 1rem;
+            margin: 0 0.5rem;
+            max-width: 520px;
+        }
+
+        .star-rating label {
+            font-size: 1.15rem;
+        }
+
+        .copyright p {
+            font-size: .95rem;
+        }
     }
 </style>
