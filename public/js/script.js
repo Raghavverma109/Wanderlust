@@ -1,18 +1,15 @@
 (() => {
     "use strict";
 
-// --- 1. PRELOADER (Enhanced for Render Cold Starts) ---
-const preloader = document.querySelector("#preloader");
+// --- 1. PRELOADER ---
+const preloader = document.querySelector("#preloader"); // Must match HTML ID
 if (preloader) {
     window.addEventListener("load", () => {
-        // Add a small delay (500ms) so the user actually sees the 
-        // brand icon before it fades out
         setTimeout(() => {
             preloader.classList.add("fade-out");
-            // Completely remove from layout after fade animation (0.5s)
             setTimeout(() => {
                 preloader.style.display = "none";
-            }, 500);
+            }, 600); // Matches the 0.6s CSS transition
         }, 500);
     });
 }

@@ -9,20 +9,43 @@
     justify-content: center;
     transition: opacity 0.5s ease;
 }
-s
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Solid white to hide content behind */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Ensure it's above everything */
+    transition: opacity 0.6s ease;
+}
+
+
+/* This is the class the JavaScript will add */
+.fade-out {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
 .spinner {
     text-align: center;
 }
 
+
 .spinner i {
-    font-size: 4rem;
+    font-size: 50px;
     color: #fe424d; /* Your brand red */
-    margin-bottom: 1rem;
+    display: block;
+    margin-bottom: 10px;
 }
 
 /* Optimized Smooth fade-out class */
 .fade-out {
-    opacity: 0;
+    opacity: 0 !important;
     transition: opacity 0.5s ease; /* This creates the actual "fade" effect */
     pointer-events: none;         /* Prevents interaction with the hidden layer */
 }
