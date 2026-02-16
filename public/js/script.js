@@ -5,12 +5,13 @@
 const preloader = document.querySelector("#preloader"); // Must match HTML ID
 if (preloader) {
     window.addEventListener("load", () => {
+        // Step 1: Add fade-out class
+        preloader.classList.add("fade-out");
+        
+        // Step 2: Remove from DOM after transition finishes
         setTimeout(() => {
-            preloader.classList.add("fade-out");
-            setTimeout(() => {
-                preloader.style.display = "none";
-            }, 600); // Matches the 0.6s CSS transition
-        }, 500);
+            preloader.style.display = "none";
+        }, 800); 
     });
 }
 

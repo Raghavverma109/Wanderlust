@@ -13,7 +13,7 @@
 
 **A comprehensive, production-ready travel listing and booking platform featuring secure user authentication, dynamic property management, real-time feedback systems, and cloud-based media hosting.**
 
-[**Live Demo**](https://wanderlust-travel-app.onrender.com) || [**Portfolio**](https://raghavverma.vercel.app/)
+[**Live Demo**](https://wanderlust-travel-application.onrender.com/) || [**Portfolio**](https://raghavverma.vercel.app/)
 
 </div>
 
