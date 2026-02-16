@@ -38,13 +38,3 @@ module.exports.privacyPage = async (req, res) => {
   }
 };
 
-// CONTRIBUTORS
-module.exports.contributors = async (req, res) => {
-  try {
-    res.render("contributors.ejs");
-  } catch (err) {
-    console.error("Error fetching contributors:", err);
-    req.flash("error", err);
-    return res.redirect("/listing");
-  }
-};

@@ -2,18 +2,33 @@
     "use strict";
 
 // --- 1. PRELOADER ---
-const preloader = document.querySelector("#preloader"); // Must match HTML ID
-if (preloader) {
-    window.addEventListener("load", () => {
-        // Step 1: Add fade-out class
+function hidePreloader() {
+    const preloader = document.querySelector("#preloader");
+    if (preloader) {
+        // Make sure pointer-events is disabled first
+        preloader.style.pointerEvents = "none";
+        
+        // Add fade-out class
         preloader.classList.add("fade-out");
         
-        // Step 2: Remove from DOM after transition finishes
+        // Remove from DOM after transition
         setTimeout(() => {
-            preloader.style.display = "none";
-        }, 800); 
-    });
+            preloader.remove();
+        }, 900);
+    }
 }
+
+// Hide preloader on DOMContentLoaded (more reliable than load event)
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", hidePreloader);
+    window.addEventListener("load", hidePreloader);
+} else {
+    // Page already loaded
+    hidePreloader();
+}
+
+// Safety net - force hide after 4 seconds
+setTimeout(hidePreloader, 4000);
 
     // --- 2. BOOTSTRAP FORM VALIDATION ---
     const forms = document.querySelectorAll(".needs-validation");
