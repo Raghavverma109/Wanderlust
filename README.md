@@ -198,7 +198,7 @@ Follow existing code style for controllers, models, and EJS templates. Include b
 - Never commit `.env` or sensitive credentials
 - Rotate SMTP and Cloudinary keys if exposed
 - Validate all user inputs server-side
-- Use HTTPS in production
+- Use HTTPS in production.
 
 ---
 
