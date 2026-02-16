@@ -853,9 +853,13 @@ display: none !important;
 }
 .nav-profile{
 height: 1.8rem !important;
+width: 1.8rem !important;
 margin-left: 0.6rem;
 border: 2px solid #ff385c;
 border-radius: 50% !important;
+flex-shrink: 0;
+overflow: hidden;
+object-fit: cover;
 }
 .drop{
 padding: 0.5rem 1rem !important;

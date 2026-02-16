@@ -122,14 +122,14 @@
           aria-expanded="false">
           <i class="fa-solid fa-bars"></i>
           <% if(!currUser) {%>
-            <img src="/noprofilenav.png" alt="" class="nav-profile">
+            <img src="/assets/noprofilenav.png" alt="" class="nav-profile">
             <% } %>
 
               <% if(currUser) {%>
                 <% if(currUser.profilePicture.purl) {%>
-                  <img src="<%=profilePic%>" alt="Profile" class="nav-profile">
+                  <img src="<%=profilePic%>" alt="Profile" class="nav-profile" onerror="this.style.backgroundColor='#ddd'">
                 <% } else { %>
-                  <img src="/profile.png" alt="Profile" class="nav-profile">
+                  <img src="/assets/profile.png" alt="Profile" class="nav-profile" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22%3E%3Crect fill=%22%23ddd%22 width=%2240%22 height=%2240%22/%3E%3C/svg%3E'">
                 <% } %>
               <% } %>
 
