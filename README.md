@@ -1,203 +1,221 @@
 
-# Wanderlust — Travel Listing & Booking Platform 🛏️
+<div align="center">
 
-Comprehensive, production-ready Node.js + Express application for listing, booking, and managing travel properties. Built with MongoDB (Atlas), Cloudinary for media, and a simple SMTP mailer for account and booking communications.
+# Wanderlust - Travel Listing & Booking Platform
 
-**Table of Contents**
-- **Overview**: What this app does
-- **Features**: User & admin capabilities
-- **Tech Stack**: Libraries and services used
-- **Folder Structure**: Quick project map
-- **Setup**: Local environment and running the app
-- **Environment Variables**: Required values and examples
-- **Screenshots**: Where to add and how to reference screenshots
-- **Deployment**: Deployment notes
-- **Contributing**: How to help
-- **License & Contact**
+[![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![EJS](https://img.shields.io/badge/EJS-B4CA65?logo=ejs&logoColor=black)](https://ejs.co/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?logo=cloudinary&logoColor=white)](https://cloudinary.com/)
+[![Nodemailer](https://img.shields.io/badge/Nodemailer-007ACC?logo=gmail&logoColor=white)](https://nodemailer.com/)
 
-**Overview**
+**A comprehensive, production-ready travel listing and booking platform featuring secure user authentication, dynamic property management, real-time feedback systems, and cloud-based media hosting.**
 
-Wanderlust is a full-stack travel listing and booking system that supports:
-- Public listing discovery and search
-- Authenticated user sign-up, profile management, and bookings
-- Admin dashboard for managing listings, bookings, users, feedback and reviews
-- Image uploads (Cloudinary) and email notifications (SMTP)
+[**Live Demo**](https://wanderlust-travel-app.onrender.com) || [**Portfolio**](https://raghavverma.vercel.app/)
 
-The app is designed to be simple to run locally and to be deployed to common Node hosting providers.
+</div>
 
-**Features**
+---
 
-- **Public**: Browse, search, and view listing details, blog pages, contact form.
-- **Users**: Signup/login, update profile, create/manage bookings, leave feedback and reviews.
-- **Admins**: Create/update/delete listings, manage users, view bookings, moderate feedback.
-- **Media**: Images stored on Cloudinary.
-- **Notifications**: SMTP email support for password reset and contact responses.
-- **Error handling**: Centralized error utilities and user-friendly error pages.
+## 📋 Table of Contents
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Screenshots](#-screenshots)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [Roadmap](#-roadmap)
 
-**Tech Stack**
+---
 
-- Node.js + Express
-- MongoDB Atlas (Mongoose models in `/models`)
-- Cloudinary (image hosting)
-- EJS templating (views)
-- Nodemailer (mailSender)
-- Frontend assets in `/public` (CSS and client JS)
+## ✨ Features
 
-**Folder Structure (important files)**
+- **Public Access**: Browse, search, and view listing details; explore blog pages and contact form
+- **User Management**: Sign up/login, update profile, create and manage bookings, leave feedback and reviews
+- **Admin Dashboard**: Create/update/delete listings, manage users and bookings, moderate feedback
+- **Media Handling**: Images stored and optimized on Cloudinary
+- **Email Notifications**: SMTP-based password reset and contact responses
+- **Error Handling**: Centralized error utilities with user-friendly error pages
 
-- `app.js` — main Express application entry
-- `admin.js` — top-level admin routes
-- `controllers/` — request handlers for listings, users, bookings, etc.
-- `models/` — Mongoose schemas
-- `views/` — EJS templates and layouts
-- `public/` — static assets (CSS, JS, images)
-- `utils/` and `middlewares/` — helpers and middleware
-- `.env.example` — environment variables reference
+---
 
-**Setup / Run Locally**
+## 🛠️ Tech Stack
 
-1. Clone the repo:
+| Component | Technology |
+|-----------|-----------|
+| **Runtime** | Node.js |
+| **Framework** | Express.js |
+| **Database** | MongoDB Atlas + Mongoose ODM |
+| **View Engine** | EJS (Embedded JavaScript) |
+| **Styling** | Bootstrap 5 + Custom CSS3 |
+| **Media Hosting** | Cloudinary |
+| **Email Service** | Nodemailer (SMTP) |
 
+---
+
+## 📁 Project Structure
+
+```
+wanderlust/
+├── app.js                 # Main Express application entry
+├── admin.js               # Admin routes
+├── controllers/           # Request handlers (listings, users, bookings, etc.)
+├── models/                # Mongoose schemas
+├── views/                 # EJS templates and layouts
+│   ├── includes/          # Partials
+│   └── layouts/           # Layout templates
+├── public/                # Static assets (CSS, JS, images)
+├── utils/                 # Helper utilities
+├── middlewares/           # Custom middleware
+├── .env.example           # Environment variables template
+└── package.json
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB Atlas account
+- Cloudinary account
+- SMTP credentials (Gmail or similar)
+
+### Installation
+
+1. **Clone the repository:**
 ```bash
 git clone <repo-url> wanderlust
 cd wanderlust
 ```
 
-2. Install dependencies:
-
+2. **Install dependencies:**
 ```bash
 npm install
 ```
 
-3. Create an environment file by copying the example:
-
+3. **Set up environment variables:**
 ```bash
 cp .env.example .env
 ```
+Edit `.env` and fill in the required values (see [Environment Variables](#-environment-variables)).
 
-Edit the `.env` file and fill in the values (see Environment Variables below).
+4. **Start the application:**
 
-4. Start the application:
-
-- If the project has a `dev` script (recommended for development):
-
+Development mode (with auto-reload):
 ```bash
 npm run dev
 ```
 
-- Or start the production entry:
-
+Production mode:
 ```bash
 node app.js
 ```
 
-5. Open your browser to `http://localhost:8080` (or the `PORT` you configured).
-
-**Environment Variables**
-
-Create `.env` (do not commit this file). Required variables:
-
-- `ATLAS_DB_TOKEN` — MongoDB connection string (MongoDB Atlas recommended)
-- `SECRET` — session / cookie secret
-- `CLOUD_NAME` — Cloudinary cloud name
-- `CLOUD_API_KEY` — Cloudinary API key
-- `CLOUD_API_SECRET` — Cloudinary API secret
-- `PORT` — server port (default 8080)
-- `MAIL_HOST` — SMTP host (e.g., smtp.gmail.com)
-- `MAIL_USER` — SMTP user/email
-- `MAIL_PASS` — SMTP password or app password
-- `ADMIN_EMAIL` — administrator notification email
-
-Use the `.env.example` file as a reference. Keep secrets out of version control.
-
-**Screenshots**
-
-Include screenshots to help reviewers and maintainers. Recommended images directory:
-
-## Screenshots
-
-### Home Page
-*Browse and search travel listings with an intuitive interface*
-![alt text](image.png)
-
-### Chat Bot Support
-*AI-powered assistant for instant customer support and queries*
-![alt text](image-1.png)
-
-### Blog Page
-*Informative travel guides and destination tips*
-![alt text](image-3.png)
-
-### Admin Panel
-*Comprehensive dashboard for managing listings, users, and bookings*
-![alt text](image-4.png)
-
-
-Recommended screenshots to capture and commit (suggested filenames):
-
-- `homepage.png` — site listing/search page
-- `listing-details.png` — single listing page with images
-- `booking.png` — booking form / confirmation
-- `admin-dashboard.png` — admin management view
-- `profile.png` — user profile / bookings list
-
-Add an optional short caption below each image when embedding them.
-
-**Development Notes**
-
-- The app uses EJS views located in `views/` with partials in `views/includes/` and layouts in `views/layouts/`.
-- Controllers are organized per feature in `controllers/` and follow a common pattern of loading models from `models/`.
-- Error handling utilities are in `utils/` and `expressError.js`.
-
-**Deployment**
-
-General steps for deployment:
-
-1. Provision a Node-compatible host (Heroku, Render, Railway, DigitalOcean App Platform, etc.).
-2. Set environment variables on the host (do not push `.env`).
-3. Ensure MongoDB Atlas connection string allows your host IP / network or uses SRV.
-4. Configure any build/start commands the host requires (e.g., `npm start` or `node app.js`).
-5. If using Cloudinary, confirm production credentials and set `CLOUD_*` env vars.
-
-Optional: configure HTTPS/SSL at the platform, and consider using process manager (PM2) for self-hosting.
-
-**Testing**
-
-This repository does not include automated tests by default. To add tests, consider using Jest or Mocha + Supertest for route and controller tests.
-
-**Contributing**
-
-- Fork the repo, create feature branches, and open pull requests with focused changes.
-- Follow existing code style for controllers, models and view templates.
-- For UI changes, include before/after screenshots in `public/assets/screenshots/` and reference them in this README.
-
-**Security & Privacy**
-
-- Never commit `.env` or secrets. Use `.env.example` as a template.
-- Rotate SMTP and Cloudinary keys if they are ever exposed.
-
-**Contact & Maintainers**
-
-For bugs or support, open an issue in the repository. For urgent matters, contact the admin email configured in the `.env`.
-
-**License**
-
-See the `LICENSE` file in the repository for license details.
-
-**Future Roadmap**
-
-- [ ] Payment Integration: Adding Stripe for actual booking transactions.
-
-- [ ] Real-time Chat: Implementing Socket.io for guest-to-host communication.
-
-- [ ] Geospatial Search: Using $near queries to find listings based on user's current location.
-
+5. **Access the application:**
+Open your browser to `http://localhost:8080`
 
 ---
 
-If you'd like, I can:
-- Add example screenshots into `public/assets/screenshots/` with placeholders,
-- Add `npm run dev` script and a small `Procfile` for deployment,
-- Or generate a quick Postman collection or API docs for the controllers.
+## 🔐 Environment Variables
 
-Tell me which follow-up you'd like next.
+Create a `.env` file in the root directory (do not commit). Required variables:
+
+```env
+ATLAS_DB_TOKEN=your_mongodb_atlas_connection_string
+SECRET=your_session_secret
+CLOUD_NAME=your_cloudinary_cloud_name
+CLOUD_API_KEY=your_cloudinary_api_key
+CLOUD_API_SECRET=your_cloudinary_api_secret
+PORT=8080
+MAIL_HOST=smtp.gmail.com
+MAIL_USER=your_email@gmail.com
+MAIL_PASS=your_app_password
+ADMIN_EMAIL=admin@example.com
+```
+
+**Note:** Keep all secrets out of version control. Use `.env.example` as a reference template.
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+*Browse and search travel listings with an intuitive interface*
+![Home Page](image.png)
+
+### Chat Bot Support
+*AI-powered assistant for instant customer support*
+![Chat Bot](image-1.png)
+
+### Blog Page
+*Informative travel guides and destination tips*
+![Blog Page](image-3.png)
+
+### Admin Panel
+*Comprehensive dashboard for managing listings, users, and bookings*
+![Admin Panel](image-4.png)
+
+---
+
+## 🌐 Deployment
+
+1. Provision a Node-compatible host (Render, Railway, Heroku, DigitalOcean, etc.)
+2. Configure environment variables on the hosting platform
+3. Ensure MongoDB Atlas allows your host IP or uses SRV connection
+4. Set build/start commands as required by your host
+5. Verify Cloudinary and email credentials for production
+6. Optional: Configure HTTPS/SSL and use PM2 for process management
+
+---
+
+## 🧪 Testing
+
+Automated tests are not included by default. Consider adding:
+- **Jest** for unit testing
+- **Mocha + Supertest** for route and controller testing
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a pull request
+
+Follow existing code style for controllers, models, and EJS templates. Include before/after screenshots for UI changes.
+
+---
+
+## 🔒 Security & Privacy
+
+- Never commit `.env` or sensitive credentials
+- Rotate SMTP and Cloudinary keys if exposed
+- Validate all user inputs server-side
+- Use HTTPS in production
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Payment Integration: Stripe for booking transactions
+- [ ] Real-time Chat: Socket.io for guest-to-host communication
+- [ ] Geospatial Search: MongoDB $near queries for location-based listings
+- [ ] Advanced Notifications: SMS alerts and push notifications
+- [ ] Review System: Star ratings with photo galleries
+
+---
+
+## 📞 Support & Contact
+
+For bugs, feature requests, or support, please open an issue in the repository. For urgent matters, contact the admin email configured in `.env`.
+
+---
+
+
